@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
 #define DIM 1500
 int grid[DIM][DIM];
