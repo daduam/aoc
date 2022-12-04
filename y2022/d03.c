@@ -1,7 +1,6 @@
 #include "stdio.h"
 #include "ctype.h"
 #include "string.h"
-#include "d03.h"
 #include "utils.h"
 
 /**

@@ -1,6 +1,5 @@
 #include "stdio.h"
 #include "string.h"
-#include "d02.h"
 #include "utils.h"
 
 /**
