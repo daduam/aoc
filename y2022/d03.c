@@ -5,13 +5,13 @@
 #include "utils.h"
 
 /**
- * get_item_priority - Priority of rucksack item.
+ * item_priority - Priority of rucksack item.
  *
  * @item: alphabet representing a rucksack item.
  * Return: Items a through z have priorities 1 through 26.
  *         Items A through Z have priorities 27 through 52.
  */
-int get_item_priority(char item)
+int item_priority(char item)
 {
 	if (islower(item))
 		return (item - 'a' + 1);
@@ -21,12 +21,12 @@ int get_item_priority(char item)
 }
 
 /**
- * get_priority_for_misplaced_item - Gets priority of item in two compartments.
+ * priority_for_misplaced_item - Gets priority of item in two compartments.
  *
  * @rucksack: string representing items in rucksack.
  * Return: Priority of item in both compartments or 0 if none.
  */
-int get_priority_for_misplaced_item(const char *rucksack)
+int priority_for_misplaced_item(const char *rucksack)
 {
 	int i, nitems, first_compartment[52];
 
@@ -34,23 +34,23 @@ int get_priority_for_misplaced_item(const char *rucksack)
 		first_compartment[i] = 0;
 	nitems = strlen(rucksack);
 	for (i = 0; i < nitems / 2; i++)
-		first_compartment[get_item_priority(rucksack[i]) - 1] += 1;
+		first_compartment[item_priority(rucksack[i]) - 1] += 1;
 	for (i = nitems / 2; i < nitems; i++)
-		if (first_compartment[get_item_priority(rucksack[i]) - 1])
-			return (get_item_priority(rucksack[i]));
+		if (first_compartment[item_priority(rucksack[i]) - 1])
+			return (item_priority(rucksack[i]));
 
 	return (0);
 }
 
 /**
- * get_priority_for_group - Gets badge priority of three-elf group.
+ * priority_for_group - Gets badge priority of three-elf group.
  *
  * @first: rucksack of first elf
  * @second: rucksack of second elf
  * @third: rucksack of third elf
  * Return: Priority of badge of three-elf group or 0 if none.
  */
-int get_priority_for_group(
+int priority_for_group(
 	const char *first, const char *second, const char *third)
 {
 	int i, j, first_elf[52], second_elf[52];
@@ -60,12 +60,12 @@ int get_priority_for_group(
 	if (!(first && second && third))
 		return (0);
 	for (i = 0; i < strlen(first); i++)
-		first_elf[get_item_priority(first[i]) - 1] += 1;
+		first_elf[item_priority(first[i]) - 1] += 1;
 	for (i = 0; i < strlen(second); i++)
-		second_elf[get_item_priority(second[i]) - 1] += 1;
+		second_elf[item_priority(second[i]) - 1] += 1;
 	for (i = 0; i < strlen(third); i++)
 	{
-		j = get_item_priority(third[i]);
+		j = item_priority(third[i]);
 		if (first_elf[j - 1] && second_elf[j - 1])
 			return (j);
 	}
@@ -88,7 +88,7 @@ int solve_d03p1(void)
 	{
 		if (feof(stdin))
 			break;
-		total_priorities += get_priority_for_misplaced_item(rucksack);
+		total_priorities += priority_for_misplaced_item(rucksack);
 	}
 	fclose(stdin);
 	return (total_priorities);
@@ -113,7 +113,7 @@ int solve_d03p2(void)
 		if (feof(stdin))
 			break;
 		total_priorities +=
-			get_priority_for_group(rucksacks[0], rucksacks[1], rucksacks[2]);
+			priority_for_group(rucksacks[0], rucksacks[1], rucksacks[2]);
 	}
 	fclose(stdin);
 	return (total_priorities);
