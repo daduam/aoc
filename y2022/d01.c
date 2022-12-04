@@ -1,18 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "d01.h"
-
-/**
- * setup_input - Open the input file for streaming in stdin
- */
-void setup_input(void)
-{
-	if (freopen("input/d01.txt", "r", stdin) == NULL)
-	{
-		perror("[d01p1] freopen() failed.");
-		exit(1);
-	}
-}
+#include "utils.h"
 
 /**
  * solve_d01p1 - solves part 1 of day 1 (Calorie Counting).
@@ -24,7 +13,7 @@ int solve_d01p1(void)
 	char s[15];
 	int current_elf_calories, max_calories;
 
-	setup_input();
+	stream_file_to_stdin("input/d01.txt");
 	max_calories = 0;
 	while (!feof(stdin))
 	{
@@ -54,9 +43,6 @@ int solve_d01p1(void)
  */
 void update_top_three(int *a, int *b, int *c, int calories)
 {
-	if (calories < *a && calories < *b && calories < *c)
-		return;
-
 	if (calories >= *a && *a <= *b && *a <= *c)
 		*a = calories;
 	else if (calories >= *b && *b <= *a && *b <= *c)
@@ -75,7 +61,7 @@ int solve_d01p2(void)
 	char s[15];
 	int current_elf_calories, top_a, top_b, top_c;
 
-	setup_input();
+	stream_file_to_stdin("input/d01.txt");
 	top_a = top_b = top_c = 0;
 	while (!feof(stdin))
 	{
