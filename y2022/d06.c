@@ -1,4 +1,5 @@
 #include "stdio.h"
+#include "string.h"
 #include "utils.h"
 
 /**
@@ -9,10 +10,9 @@
  */
 int count_unique(char *window)
 {
-	int i, count, counter[26];
+	int i, count;
+	int counter[26] = {0};
 
-	for (i = 0; i < 26; i++)
-		counter[i] = 0;
 	for (i = 0, count = 0; window[i]; i++)
 	{
 		if (counter[window[i] - 'a'] == 0)
@@ -30,10 +30,9 @@ int count_unique(char *window)
  */
 void slide_window(char *window, char c)
 {
-	int i, window_size;
+	int i;
+	int window_size = strlen(window);
 
-	for (window_size = 0; window[window_size]; window_size++)
-		;
 	for (i = 1; i < window_size; i++)
 		window[i - 1] = window[i];
 	window[i - 1] = c;
