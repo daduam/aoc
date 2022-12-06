@@ -18,6 +18,10 @@ int main(void)
 	printf("[d3p2] Total badge priorities of three-elf groups: %d\n",
 		   solve_d03p2());
 
+	printf("[d4p1] Pairs with one range fully containing the other: %d\n",
+		   solve_d04p1());
+	printf("[d4p2] Pairs of ranges that overlap: %d\n", solve_d04p2());
+
 	printf("[d6p1] Characters processed before start-of-packet marker: %d\n",
 		   solve_d06p1());
 	printf("[d6p2] Characters processed before start-of-message marker: %d\n",
