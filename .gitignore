@@ -1,3 +1,5 @@
 */**/bin/
 */**/input*.txt
+*/**/in*.txt
+*/**/test*.txt
 */**/.vscode/
